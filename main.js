@@ -5,7 +5,7 @@ var ajaxCall = (key, url, prompt) => {
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-16k",
         prompt: prompt,
         max_tokens: 4096,
         n: 1,
@@ -28,7 +28,7 @@ var ajaxCall = (key, url, prompt) => {
   });
 };
 
-const url = "https://api.openai.com/v1s";
+const api_url = "https://api.openai.com/v1";
 
 (function () {
   const template = document.createElement("template");
@@ -42,7 +42,7 @@ const url = "https://api.openai.com/v1s";
     async post(apiKey, endpoint, prompts) {
       const { response } = await ajaxCall(
         apiKey,
-        `${url}/${endpoint}`,
+        `${api_url}/${endpoint}`,
         prompt
       );
       console.log(response.choices[0].text);
